@@ -29,5 +29,5 @@ MeshPhongMaterial(): 會對光源有反應。
 ## 動畫
 比起setTimeout()或setInterval()，使用requestAnimationFrame()實現動畫可防止掉幀提升效能。且當該頁面處於背景狀態（例如切換到別的分頁），瀏覽器會暫停呼叫requestAnimationFrame()。待頁面被啟用時，動畫會從上次停止的地方繼續執行。關於requestAnimationFrame()可參閱這個文章的介紹：[你知道的requestAnimationFrame【从0到0.1】](https://juejin.im/post/6844903761102536718)。
 
-#### 動畫幀數
+### 動畫幀數
 使用[stats.js](https://github.com/mrdoob/stats.js)這個library可以檢測動畫幀數（fps），即一秒的幀數。
