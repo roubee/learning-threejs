@@ -25,3 +25,6 @@ MeshPhongMaterial(): 會對光源有反應。
   * THREE.PCFSoftShadowMap = 2
 2. 設定物件的receiveShadow屬性為接受陰影，或是設定castShadow為投射陰影。
 3. 設定可以產生陰影的光源（SpotLight物件）的receiveShadow屬性。
+
+#### 動畫
+比起setTimeout()或setInterval()，使用requestAnimationFrame()實現動畫可防止掉幀提升效能。且當該頁面處於背景狀態（例如切換到別的分頁），瀏覽器會暫停呼叫requestAnimationFrame()。待頁面被啟用時，動畫會從上次停止的地方繼續執行。關於requestAnimationFrame()可參閱這個文章的介紹：[你知道的requestAnimationFrame【从0到0.1】](https://juejin.im/post/6844903761102536718)。
