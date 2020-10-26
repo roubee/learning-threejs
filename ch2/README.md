@@ -1,9 +1,10 @@
 # 場景
 THREE.Scene()
 
-## 增加物體 / 移除物體
-* 增加物體：add()
-* 移除物體：remove()
-* 獲取所有物體（陣列型態）：children()
-* 透過物體名字取得物體：getObjectByName(name);
-* 物體數量：children.length
+## 增加對象 / 移除對象
+* 增加對象：add(object)
+* 移除對象：remove(object)
+* 獲取對象列表（陣列型態）：children()
+* 透過對象名字取得特定對象：getObjectByName(object name);
+* 對象數量：children.length
+* 遍歷該對象及其後代：traverse(function)
