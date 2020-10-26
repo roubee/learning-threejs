@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>06-screen-size-change</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="WebGL-output"></div>
+  <script>
+    function init() {
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      s
+      scene.add(camera);
+
+      var planeGrometry = new THREE.PlaneGrometry(60, 40, 1, 1);
+      var planeMaterial = new THREE.MeshLamberMaterial({
+        color: 0xffffff
+      });
+      var plane = new THREE.Mesh(planeGrometry, planeMaterial);
+      scene.add(plane);
+
+      var ambientLight = new THREE.AmbientLight(0x0c0c0c);
+      scene.add(ambientLight);
+
+      var spotLight = new THREE.SpotLight(0xffffff);
+      scene.add(spotLight);
+    }
+    window.onload = init;
+  </script>
+</body>
+</html>
