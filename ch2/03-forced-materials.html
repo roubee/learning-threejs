@@ -23,135 +23,135 @@
   <script>
     function init() {
       // 顯示動畫幀數
-        var stats = initStats();
+      var stats = initStats();
 
-        // 場景
-        var scene = new THREE.Scene();
-        scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
-        // 攝影機
-        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        scene.add(camera);
-        // 渲染器
-        var renderer = new THREE.WebGLRenderer();
+      // 場景
+      var scene = new THREE.Scene();
+      scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+      // 攝影機
+      var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      scene.add(camera);
+      // 渲染器
+      var renderer = new THREE.WebGLRenderer();
 
-        // 設定場景的背景色及大小
-        renderer.setClearColor(0xEEEEEE, 1);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        // 開啟陰影
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = 2;
+      // 設定場景的背景色及大小
+      renderer.setClearColor(0xEEEEEE, 1);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      // 開啟陰影
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = 2;
 
-        // 平面
-        // 設定平面寬高大小
-        var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
-        // 設定平面材質
-        var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
-        // 建構曲面（需要geometry及material屬性）
-        var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        // 設定平面位置
-        plane.rotation.x = -0.5 * Math.PI;
-        plane.position.x = 0;
-        plane.position.y = 0;
-        plane.position.z = 0;
-        // 接受陰影
-        plane.receiveShadow = true;
-        scene.add(plane);
+      // 平面
+      // 設定平面寬高大小
+      var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
+      // 設定平面材質
+      var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+      // 建構曲面（需要geometry及material屬性）
+      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      // 設定平面位置
+      plane.rotation.x = -0.5 * Math.PI;
+      plane.position.x = 0;
+      plane.position.y = 0;
+      plane.position.z = 0;
+      // 接受陰影
+      plane.receiveShadow = true;
+      scene.add(plane);
 
-        // 環境光
-        var ambientLight = new THREE.AmbientLight(0x0c0c0c);
-        scene.add(ambientLight);
+      // 環境光
+      var ambientLight = new THREE.AmbientLight(0x0c0c0c);
+      scene.add(ambientLight);
 
-        // 聚光燈光源
-        var spotLight = new THREE.SpotLight(0xffffff);
-        spotLight.position.set(-40, 60, -10);
-        spotLight.castShadow = true;
-        scene.add(spotLight);
+      // 聚光燈光源
+      var spotLight = new THREE.SpotLight(0xffffff);
+      spotLight.position.set(-40, 60, -10);
+      spotLight.castShadow = true;
+      scene.add(spotLight);
 
-        // 設定攝影機位置
-        camera.position.x = -30;
-        camera.position.y = 40;
-        camera.position.z = 30;
-        // 設置視野為場景的中心
-        camera.lookAt(scene.position);
+      // 設定攝影機位置
+      camera.position.x = -30;
+      camera.position.y = 40;
+      camera.position.z = 30;
+      // 設置視野為場景的中心
+      camera.lookAt(scene.position);
 
-        document.getElementById("WebGL-output").appendChild(renderer.domElement);
-        
-        // 建立可透過dat.GUI變更的參數，並給予預設值
-        var controls = new function () {
-          this.rotationSpeed = 0.02;
-          this.numberOfObjects = scene.children.length;
+      document.getElementById("WebGL-output").appendChild(renderer.domElement);
+      
+      // 建立可透過dat.GUI變更的參數，並給予預設值
+      var controls = new function () {
+        this.rotationSpeed = 0.02;
+        this.numberOfObjects = scene.children.length;
 
-          this.removeCube = function () {
-            var allChildren = scene.children;
-            var lastObject = allChildren[allChildren.length - 1];
-            // 只刪除THREE.Mesh對象
-            if (lastObject instanceof THREE.Mesh) {
-              scene.remove(lastObject);
-              this.numberOfObjects = scene.children.length;
-            }
-          };
-
-          this.addCube = function () {
-            var cubeSize = Math.ceil((Math.random() * 3));
-            var cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-            var cubeMaterial = new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff});
-            // 方塊大小及顏色皆是亂數產生
-            var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-            // 投射陰影
-            cube.castShadow = true;
-            // 給予方塊名稱
-            cube.name = "cube-" + scene.children.length;
-
-            // 亂數產生方塊位置
-            cube.position.x = -30 + Math.round((Math.random() * planeGeometry.parameters.width));
-            cube.position.y = Math.round((Math.random() * 5));
-            cube.position.z = -20 + Math.round((Math.random() * planeGeometry.parameters.height));
-
-            scene.add(cube);
-            // 更新方塊總數
+        this.removeCube = function () {
+          var allChildren = scene.children;
+          var lastObject = allChildren[allChildren.length - 1];
+          // 只刪除THREE.Mesh對象
+          if (lastObject instanceof THREE.Mesh) {
+            scene.remove(lastObject);
             this.numberOfObjects = scene.children.length;
-          };
-
-          this.outputObjects = function () {
-            console.log(scene.children);
           }
         };
-        var gui = new dat.GUI();
-        gui.add(controls, 'rotationSpeed', 0, 0.5);
-        gui.add(controls, 'addCube');
-        gui.add(controls, 'removeCube');
-        gui.add(controls, 'outputObjects');
-        gui.add(controls, 'numberOfObjects').listen();
 
-        render();
-        function render() {
-          stats.update();
+        this.addCube = function () {
+          var cubeSize = Math.ceil((Math.random() * 3));
+          var cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+          var cubeMaterial = new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff});
+          // 方塊大小及顏色皆是亂數產生
+          var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+          // 投射陰影
+          cube.castShadow = true;
+          // 給予方塊名稱
+          cube.name = "cube-" + scene.children.length;
 
-          // 每幀變動
-          // 遍歷對象及其後代
-          scene.traverse(function (e) {
-            if (e instanceof THREE.Mesh && e != plane) {
-              e.rotation.x += controls.rotationSpeed;
-              e.rotation.y += controls.rotationSpeed;
-              e.rotation.z += controls.rotationSpeed;
-            }
-          });
+          // 亂數產生方塊位置
+          cube.position.x = -30 + Math.round((Math.random() * planeGeometry.parameters.width));
+          cube.position.y = Math.round((Math.random() * 5));
+          cube.position.z = -20 + Math.round((Math.random() * planeGeometry.parameters.height));
 
-          requestAnimationFrame(render);
-          renderer.render(scene, camera);
+          scene.add(cube);
+          // 更新方塊總數
+          this.numberOfObjects = scene.children.length;
+        };
+
+        this.outputObjects = function () {
+          console.log(scene.children);
         }
+      };
+      var gui = new dat.GUI();
+      gui.add(controls, 'rotationSpeed', 0, 0.5);
+      gui.add(controls, 'addCube');
+      gui.add(controls, 'removeCube');
+      gui.add(controls, 'outputObjects');
+      gui.add(controls, 'numberOfObjects').listen();
 
-        function initStats() {
-            var stats = new Stats();
-            stats.setMode(0);
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.left = '0px';
-            stats.domElement.style.top = '0px';
-            document.getElementById("Stats-output").appendChild(stats.domElement);
-            return stats;
-        }
+      render();
+      function render() {
+        stats.update();
+
+        // 每幀變動
+        // 遍歷對象及其後代
+        scene.traverse(function (e) {
+          if (e instanceof THREE.Mesh && e != plane) {
+            e.rotation.x += controls.rotationSpeed;
+            e.rotation.y += controls.rotationSpeed;
+            e.rotation.z += controls.rotationSpeed;
+          }
+        });
+
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+      }
+
+      function initStats() {
+        var stats = new Stats();
+        stats.setMode(0);
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '0px';
+        stats.domElement.style.top = '0px';
+        document.getElementById("Stats-output").appendChild(stats.domElement);
+        return stats;
+      }
     }
-    window.onload = init
+    window.onload = init;
   </script>
 </body>
 </html>
