@@ -8,3 +8,8 @@ THREE.Scene()
 * 透過對象名字取得特定對象：getObjectByName(object name);
 * 對象數量：children.length
 * 遍歷該對象及其後代：traverse(function)
+
+## 霧化效果
+場景的fog屬性可以加上霧化效果，場景中的對象越遠就越模糊。有以下兩種class可使用。
+* THREE.Fog(color, near, far): 可自訂模糊範圍，霧的濃度是線性增長。
+* THREE.FogExp2(color, density): 隨著距離承指數增長。
