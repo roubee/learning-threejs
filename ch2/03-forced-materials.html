@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>02-foggy-scene</title>
+  <title>03-forced-materials</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
@@ -27,7 +27,7 @@
 
         // 場景
         var scene = new THREE.Scene();
-        scene.fog = new THREE.Fog(0xffffff, 0.015, 100);
+        scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
         // 攝影機
         var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         scene.add(camera);
