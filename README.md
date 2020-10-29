@@ -1,5 +1,5 @@
 # 簡介
-針對「[Three.js 開發指南 : WebGL 的 JavaScript 3D庫 (原書第2版)](https://www.tenlong.com.tw/products/9787111570134)」此書的學習筆記。該書翻譯自Jos Dirksen所著的「[Learning Three.js – the JavaScript 3D Library for WebGL - Second Edition](https://www.packtpub.com/product/learning-three-js-the-javascript-3d-library-for-webgl-second-edition/9781784392215)」。書中共分為十二個章節，因此筆記也會以此做分類。裡面的範例程式來源可參閱作者針對此版本建立的[repo](https://github.com/josdirksen/learning-threejs)。筆記裡的Three.js使用版本為r121。
+針對「[Three.js 開發指南 : WebGL 的 JavaScript 3D庫 (原書第2版)](https://www.tenlong.com.tw/products/9787111570134)」此書的學習筆記。該書翻譯自Jos Dirksen所著的「[Learning Three.js – the JavaScript 3D Library for WebGL - Second Edition](https://www.packtpub.com/product/learning-three-js-the-javascript-3d-library-for-webgl-second-edition/9781784392215)」。書中共分為十二個章節，因此筆記也會以此做分類。裡面的範例程式來源可參閱作者的[repo](https://github.com/josdirksen/learning-threejs)。筆記裡的Three.js使用版本為r121。
 
 # 目錄
 1. [使用Three.js創建你的第一個三維場景](https://github.com/roubee/learning-threejs/tree/main/ch1)
